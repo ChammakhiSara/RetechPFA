@@ -67,6 +67,6 @@ export class GestionAgencesComponent implements OnInit {
 
 /*  code de la fonction click deleteAgence */
   deleteAgence(index){
-    
+    fjjh
   }
 }
