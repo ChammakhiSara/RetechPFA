@@ -21,6 +21,7 @@ export class GestionAgencesComponent implements OnInit {
 
   ngOnInit(): void {
     this.agences = JSON.parse(localStorage.getItem('agences')) || []; 
+    
    /*  initialisation des entrées du formulaire add  */
     this.addAgencesForm = new FormGroup({
       nom: new FormControl('', [Validators.required]),
@@ -34,7 +35,7 @@ export class GestionAgencesComponent implements OnInit {
       telephone: new FormControl('', [Validators.required])
     });
     /*  on identifiant l'index que l'on va utilisé comme paramétre: < this.route.snapshot.params["index"]+constructor(private route:ActivatedRoute) > */
-    this.index = this.route.snapshot.params["index"];
+    // this.index = this.route.snapshot.params["index"];
       
    
     let currentAgence = this.agences[this.index];
@@ -67,6 +68,6 @@ export class GestionAgencesComponent implements OnInit {
 
 /*  code de la fonction click deleteAgence */
   deleteAgence(index){
-    fjjh
+    
   }
 }
