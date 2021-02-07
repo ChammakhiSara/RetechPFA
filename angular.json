@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "retechPfa": {
@@ -125,6 +125,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "retechPfa"
+    }
+  },
+  "defaultProject": "retechPfa",
+  "cli": {
+    "analytics": "965d4f81-cdf5-4bb4-ac5b-f69bad89afbe"
+  }
 }

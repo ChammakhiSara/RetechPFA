@@ -10,37 +10,37 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GestionAgencesComponent implements OnInit {
 
-  addAgencesForm: FormGroup;
+  
   submitted = false;
 
-  editAgencesForm: FormGroup;
+  
   agences: any;
   index: number;
 
+  /*  initialisation des entrées du formulaire add  */
+  addAgencesForm = new FormGroup({
+    nom: new FormControl('', [Validators.required]),
+    adresse: new FormControl('', [Validators.required]),
+    telephone: new FormControl('', [Validators.required])
+  });
+
+   /*  initialisation des entrées du formulaire edit */
+   editAgencesForm = new FormGroup({
+    nom: new FormControl('', [Validators.required]),
+    adresse: new FormControl('', [Validators.required]),
+    telephone: new FormControl('', [Validators.required])
+  });
   constructor(private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.agences = JSON.parse(localStorage.getItem('agences')) || []; 
     
-   /*  initialisation des entrées du formulaire add  */
-    this.addAgencesForm = new FormGroup({
-      nom: new FormControl('', [Validators.required]),
-      adresse: new FormControl('', [Validators.required]),
-      telephone: new FormControl('', [Validators.required])
-    });
-    /*  initialisation des entrées du formulaire edit */
-    this.editAgencesForm = new FormGroup({
-      nom: new FormControl('', [Validators.required]),
-      adresse: new FormControl('', [Validators.required]),
-      telephone: new FormControl('', [Validators.required])
-    });
+   
+   
     /*  on identifiant l'index que l'on va utilisé comme paramétre: < this.route.snapshot.params["index"]+constructor(private route:ActivatedRoute) > */
     // this.index = this.route.snapshot.params["index"];
       
-   
-    let currentAgence = this.agences[this.index];
-    /*  mettre les valeurs de l'objet < currentAgence > dans les champs du formulaire edit */
-    this.editAgencesForm.patchValue(currentAgence); 
+  
   }
 
 /*  code de la fonction click addAgence */
@@ -70,4 +70,20 @@ export class GestionAgencesComponent implements OnInit {
   deleteAgence(index){
     
   }
+  moveDataToModifForm(index : any){
+   let currentAgence = this.agences[index];
+    //  mettre les valeurs de l'objet < currentAgence > dans les champs du formulaire edit 
+    this.editAgencesForm.patchValue(currentAgence);
+    /*this.editAgencesForm.setValue({
+
+      nom: agence.nom,
+      adresse: agence.adresse,
+      telephone: agence.telephone
+
+
+
+     });*/
+  }
+
+
 }
