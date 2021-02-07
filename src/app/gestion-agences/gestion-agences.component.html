@@ -21,6 +21,7 @@
                                 <label for="selectAll"></label>
                             </span>
                         </th>
+                        <th>id</th>
                         <th>Nom</th>
                         <th>Adresse</th>
                         <th>Téléphone</th>
@@ -28,20 +29,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let agence of agences; let i=index">
+                    <tr *ngFor="let agence of agences; let i=index" >
                         <td>
                             <span class="custom-checkbox">
                                 <input type="checkbox" id="checkbox" name="options[]" value="i">
                                 <label for="checkbox"></label>
                             </span>
                         </td>
+                        <td>{{agence.id}}</td>
                         <td>{{ agence.nom }}</td>
                         <td>{{ agence.adresse }}</td>
                         <td>{{ agence.telephone }}</td>
                         <td>
                             <a  href="#editAgenceModal" class="edit" data-toggle="modal"  ><i class="material-icons"
                                     data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
-                            <!-- <button type="button" (click)="moveDataToModifForm(i)"><a href="#editAgenceModal" class="edit" data-toggle="modal"><i class="material-icons"
+                            <!-- this works but with a href no!! <button type="button" (click)="moveDataToModifForm(i)"><a href="#editAgenceModal" class="edit" data-toggle="modal"><i class="material-icons"
                                 data-toggle="tooltip" title="Modifier">&#xE254;</i></a></button> -->     
                             <a href="#deleteAgenceModal" class="delete" data-toggle="modal"><i class="material-icons"
                                     data-toggle="tooltip" title="Supprimer">&#xE872;</i></a>
@@ -101,7 +103,7 @@
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
-                    <button class="btn btn-info" (click)="addAgence()">Ajouter</button>
+                    <button class="btn btn-info"  (click)="addAgence()">Ajouter</button>
                 </div>
             </form>
         </div>

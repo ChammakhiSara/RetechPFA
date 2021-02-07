@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { AgenceServiceService } from '../services/agence-service.service';
 
 @Component({
   selector: 'app-gestion-agences',
@@ -9,8 +10,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./gestion-agences.component.css']
 })
 export class GestionAgencesComponent implements OnInit {
+  // variable for service reponse 
+  message : any;
 
-  
   submitted = false;
 
   
@@ -30,18 +32,18 @@ export class GestionAgencesComponent implements OnInit {
     adresse: new FormControl('', [Validators.required]),
     telephone: new FormControl('', [Validators.required])
   });
-  constructor(private route:ActivatedRoute) { }
+
+  constructor(private route:ActivatedRoute, private service:AgenceServiceService) { }
 
   ngOnInit(): void {
-    this.agences = JSON.parse(localStorage.getItem('agences')) || []; 
-    
-   
-   
+    let response= this.service.getAgences(); 
+    response.subscribe((data)=>this.agences= data);
+    //this.agences = JSON.parse(localStorage.getItem('agences')) || []; 
+
     /*  on identifiant l'index que l'on va utilisé comme paramétre: < this.route.snapshot.params["index"]+constructor(private route:ActivatedRoute) > */
     // this.index = this.route.snapshot.params["index"];
-      
-  
-  }
+   }
+
 
 /*  code de la fonction click addAgence */
   addAgence(){
@@ -50,10 +52,19 @@ export class GestionAgencesComponent implements OnInit {
       return;
     }
     else {
-      let agences = JSON.parse(localStorage.getItem('agences')) || [];
+      /*let agences = JSON.parse(localStorage.getItem('agences')) || [];
       let agence = this.addAgencesForm.value;
       agences.push(agence);
-      localStorage.setItem('agences', JSON.stringify(agences));
+      localStorage.setItem('agences', JSON.stringify(agences));*/
+
+      let agence = this.addAgencesForm.value;
+      console.log(agence);
+      let response = this.service.addAgence(agence);
+      response.subscribe((data)=>this.message = data);
+      //alert(this.message);
+      console.log(this.message);
+      
+
     }
   }
 
@@ -67,9 +78,14 @@ export class GestionAgencesComponent implements OnInit {
   }  
 
 /*  code de la fonction click deleteAgence */
-  deleteAgence(index){
+  deleteAgence(id){
+    let response = this.service.deleteAgence(id);
+    response.subscribe((data)=>this.agences= data);
+    console.log(id);
     
+
   }
+  // copy des données à modifer dans le form du modification
   moveDataToModifForm(index : any){
    let currentAgence = this.agences[index];
     //  mettre les valeurs de l'objet < currentAgence > dans les champs du formulaire edit 
