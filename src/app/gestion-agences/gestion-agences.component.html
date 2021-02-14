@@ -41,12 +41,11 @@
                         <td>{{ agence.adresse }}</td>
                         <td>{{ agence.telephone }}</td>
                         <td>
-                           <!-- <a  href="#editAgenceModal" class="edit" data-toggle="modal"  ><i class="material-icons"
-                                    data-toggle="tooltip" title="Modifier">&#xE254;</i></a>--> 
-                              <button type="button" (click)="moveDataToModifForm(i)"><a href="#editAgenceModal" class="edit" data-toggle="modal"><i class="material-icons"
-                                data-toggle="tooltip" title="Modifier">&#xE254;</i></a></button>     
-                                <button type="button" (click)="moveIDToDeleteForm(i)"><a href="#deleteAgenceModal" class="delete" data-toggle="modal"><i class="material-icons"
-                                    data-toggle="tooltip" title="Supprimer">&#xE872;</i></a></button>
+                            <a  href="#editAgenceModal" class="edit" data-toggle="modal" role="button" (click)="moveDataToModifForm(i)" ><i class="material-icons"
+                                    data-toggle="tooltip" title="Modifier">&#xE254;</i></a> 
+                             
+                            <a href="#deleteAgenceModal" class="delete" data-toggle="modal" role="button" (click)="moveIDToDeleteForm(i)"><i class="material-icons"
+                                    data-toggle="tooltip" title="Supprimer">&#xE872;</i></a>
                         </td>
                     </tr>
                 </tbody>
